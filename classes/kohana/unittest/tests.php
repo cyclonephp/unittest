@@ -1,5 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
+include 'PHPUnit/Autoload.php';
+
 /**
  * PHPUnit testsuite for kohana application
  *
@@ -18,7 +20,7 @@ class Kohana_Unittest_Tests {
 	 * is greater than or equal to 3.5
 	 * @var boolean
 	 */
-	static protected $phpunit_v35 = FALSE;
+	static protected $phpunit_v35 = TRUE;
 
 	/**
 	 * Loads test files if they cannot be found by kohana
@@ -68,6 +70,7 @@ class Kohana_Unittest_Tests {
 		spl_autoload_register(array('Unittest_tests', 'autoload'));
 
 		// As of PHPUnit v3.5 there are slight differences in the way files are black|whitelisted
+                
 		self::$phpunit_v35 = function_exists('phpunit_autoload');
 
 		Unittest_tests::$cache = (($cache = Kohana::cache('unittest_whitelist_cache')) === NULL) ? array() : $cache;
