@@ -3,6 +3,6 @@ define('cyclone\\SUPPRESS_REQUEST', TRUE);
 
 require dirname(__FILE__).'/../../index.php';
 
-FileSystem::enable_lib('unittest', TOOLPATH . 'unittest/');
+\cyclone\FileSystem::enable_lib('unittest', cyclone\TOOLPATH . 'unittest/');
 
 //Kohana::modules(Kohana::modules() + array('unittest' => MODPATH.'unittest'));

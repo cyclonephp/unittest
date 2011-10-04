@@ -2,6 +2,8 @@
 
 include 'PHPUnit/Autoload.php';
 
+use cyclone as cy;
+
 /**
  * PHPUnit testsuite for kohana application
  *
@@ -30,7 +32,7 @@ class Kohana_Unittest_Tests {
 	{
 		$file = str_replace('_', '/', $class);
 
-		if ($file = Kohana::find_file('tests', $file))
+		if ($file = cy\Kohana::find_file('tests', $file))
 		{
 			require_once $file;
 		}
@@ -61,7 +63,7 @@ class Kohana_Unittest_Tests {
 		}
 
 		// Allow PHPUnit to handle exceptions and errors
-		if (Kohana::$is_cli)
+		if (cy\Env::$is_cli)
 		{
 			restore_exception_handler();
 			restore_error_handler();
@@ -117,7 +119,7 @@ class Kohana_Unittest_Tests {
 			return $suite;
 		}
 
-		$files = Kohana::list_files('tests');
+		$files = cy\Kohana::list_files('tests');
 
 		$suite = new PHPUnit_Framework_TestSuite;
 
@@ -239,7 +241,7 @@ class Kohana_Unittest_Tests {
 			}
 
 			// Only whitelist the "top" files in the cascading filesystem
-			self::set_whitelist(Kohana::list_files('classes', $directories));
+			self::set_whitelist(cy\Kohana::list_files('classes', $directories));
 		}
 	}
 
@@ -251,7 +253,7 @@ class Kohana_Unittest_Tests {
 	 */
 	static protected function get_config_whitelist()
 	{
-		$config = Kohana::config('unittest');
+		$config = cy\Config::inst()->get('unittest');
 		$directories = array();
 
 		if ($config->whitelist['app'])
@@ -261,7 +263,7 @@ class Kohana_Unittest_Tests {
 
 		if ($modules = $config->whitelist['modules'])
 		{
-			$k_modules = Kohana::modules();
+			$k_modules = cy\Kohana::modules();
 
 			// Have to do this because kohana merges config...
 			// If you want to include all modules & override defaults then TRUE must be the first
@@ -314,7 +316,7 @@ class Kohana_Unittest_Tests {
 				if ( ! isset(Unittest_tests::$cache[$file]))
 				{
 					$relative_path = substr($file, strrpos($file, 'classes'.DIRECTORY_SEPARATOR) + 8, -strlen(EXT));
-					$cascading_file = Kohana::find_file('classes', $relative_path);
+					$cascading_file = cy\Kohana::find_file('classes', $relative_path);
 
 					// The theory is that if this file is the highest one in the cascading filesystem
 					// then it's safe to whitelist

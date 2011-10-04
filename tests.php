@@ -1,11 +1,6 @@
 <?php
 
-if ( ! class_exists('Kohana'))
-{
-	die('Please include the kohana bootstrap file (see README.markdown)');
-}
-
-if ($file = Kohana::find_file('classes', 'unittest/tests'))
+if ($file = cyclone\Kohana::find_file('classes', 'unittest/tests'))
 {
 	require_once $file;
 
