@@ -1,5 +1,5 @@
 <?php
-define('SUPPRESS_REQUEST', TRUE);
+define('cyclone\\SUPPRESS_REQUEST', TRUE);
 
 require dirname(__FILE__).'/../../index.php';
 
