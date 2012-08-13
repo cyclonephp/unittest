@@ -1,5 +1,3 @@
-<?php defined('SYSPATH') or die('No direct script access.') ?>
-
 <div id="select">
 	<h1>PHPUnit for Kohana 3</h1>
 	<div id="groups">

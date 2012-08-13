@@ -1,3 +1,3 @@
-<?php defined('SYSPATH') or die('No direct script access.');
+<?php 
 
 class Unittest_Runner extends Kohana_Unittest_Runner {}
